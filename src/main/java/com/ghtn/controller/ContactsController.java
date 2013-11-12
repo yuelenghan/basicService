@@ -18,21 +18,70 @@ import java.util.Map;
  * Time: 下午5:28
  */
 @Controller
-@RequestMapping("/contacts/")
+@RequestMapping("/contacts")
 public class ContactsController {
 
     private static Log log = LogFactory.getLog(ContactsController.class);
-    private Map<String, String> params = new HashMap<>();
 
-    @RequestMapping("addContacts")
+    @RequestMapping("/saveContacts")
     @ResponseBody
-    public ResultMessage addContacts(String name, String idCard) {
+    public ResultMessage saveContacts(String name, String idCard) {
+        Map<String, String> params = new HashMap<>();
         params.put("name", name);
         params.put("idCard", idCard);
 
         try {
-            String url = HttpClientUtil.getUrl("contacts.addContacts");
-            String msg = HttpClientUtil.sendRequest(url, params, "post");
+            String msg = HttpClientUtil.sendRequest(HttpClientUtil.getUrl("contacts.saveContacts"),
+                    params, "post");
+            if (!StringUtil.isNullStr(msg) && msg.trim().equals("success")) {
+                return new ResultMessage(1, msg);
+            } else {
+                return new ResultMessage(-1, msg);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultMessage(-1, e.toString());
+        }
+    }
+
+    @RequestMapping("/removeContacts")
+    @ResponseBody
+    public ResultMessage removeContacts(Long id) {
+        Map<String, String> params = new HashMap<>();
+        params.put("id", id + "");
+        try {
+            String msg = HttpClientUtil.sendRequest(HttpClientUtil.getUrl("contacts.removeContacts"),
+                    params, "post");
+            if (!StringUtil.isNullStr(msg) && msg.trim().equals("success")) {
+                return new ResultMessage(1, msg);
+            } else {
+                return new ResultMessage(-1, msg);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultMessage(-1, e.toString());
+        }
+    }
+
+    @RequestMapping("/listContacts")
+    @ResponseBody
+    public Object listContacts() {
+        try {
+            return HttpClientUtil.sendRequest(HttpClientUtil.getUrl("contacts.listContacts"),
+                    null, "post");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultMessage(-1, e.toString());
+        }
+    }
+
+    public ResultMessage batchImportContacts(String fileName) {
+        Map<String, String> params = new HashMap<>();
+        params.put("fileName", fileName);
+
+        try {
+            String msg = HttpClientUtil.sendRequest(HttpClientUtil.getUrl("contacts.removeContacts"),
+                    params, "post");
             if (!StringUtil.isNullStr(msg) && msg.trim().equals("success")) {
                 return new ResultMessage(1, msg);
             } else {

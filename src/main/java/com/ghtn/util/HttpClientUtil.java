@@ -37,20 +37,13 @@ public class HttpClientUtil {
      * @return
      */
     public static String getUrl(String property) {
-        InputStream in = ConstantUtil.class.getResourceAsStream("/url.properties");
         Properties prop = new Properties();
-        try {
+        try (InputStream in = ConstantUtil.class.getResourceAsStream("/url.properties")) {
             prop.load(in);
             return prop.getProperty(property).trim();
         } catch (IOException e) {
             e.printStackTrace();
             return "";
-        } finally {
-            try {
-                in.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
 

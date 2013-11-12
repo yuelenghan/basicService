@@ -1,5 +1,9 @@
 package com.ghtn.util;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * User: Administrator
  * Date: 13-11-12
@@ -8,6 +12,9 @@ package com.ghtn.util;
 public class ResultMessage {
     private Integer code;
     private String msg;
+    private List resultList;
+    private Map resultMap;
+    private Set resultSet;
 
     public ResultMessage() {
     }
@@ -32,4 +39,30 @@ public class ResultMessage {
     public void setMsg(String msg) {
         this.msg = msg;
     }
+
+    public List getResultList() {
+        return resultList;
+    }
+
+    public void setResultList(List resultList) {
+        this.resultList = resultList;
+    }
+
+    public Map getResultMap() {
+        return resultMap;
+    }
+
+    public void setResultMap(Map resultMap) {
+        this.resultMap = resultMap;
+    }
+
+    public Set getResultSet() {
+        return resultSet;
+    }
+
+    public void setResultSet(Set resultSet) {
+        this.resultSet = resultSet;
+    }
 }
+
+
