@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "text": "手机报",
+        "state": "open",
+        "iconCls": "icon-book",
+        "children": [
+            {
+                "id": 11,
+                "text": "制作手机报",
+                "iconCls": "icon-page",
+                "attributes": {
+                    "url": "test.jsp"
+                }
+            },
+            {
+                "id": 12,
+                "text": "发件箱",
+                "iconCls": "icon-page",
+                "attributes": {
+                    "url": "test2.jsp"
+                }
+            }
+        ]
+    }
+]

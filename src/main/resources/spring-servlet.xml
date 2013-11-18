@@ -21,8 +21,11 @@
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/page/"
           p:suffix=".jsp"/>
 
-    <!--放过/scripts下的静态文件-->
+    <!--放过的静态文件-->
+    <mvc:resources mapping="/css/**" location="/css/"/>
+    <mvc:resources mapping="/json/**" location="/json/"/>
     <mvc:resources mapping="/scripts/**" location="/scripts/"/>
+    <mvc:resources mapping="/themes/**" location="/themes/"/>
 
     <!-- 日志拦截器 -->
     <mvc:interceptors>

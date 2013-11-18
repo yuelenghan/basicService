@@ -1,27 +1,32 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="scripts/jquery-1.10.2.js" language="javascript"></script>
-    <title>test</title>
+    <meta charset="UTF-8">
+    <title>基础服务</title>
+    <link rel="stylesheet" type="text/css" href="themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="css/demo.css">
+    <script type="text/javascript" src="scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/jquery.easyui.min.js"></script>
+
+    <script type="text/javascript" src="scripts/main.js"></script>
+    <script type="text/javascript" src="scripts/contacts.js"></script>
 </head>
 <body>
-test<br>
-<script type="text/javascript" language="javascript">
-    function test() {
-        // alert(1);
-        $.ajax({
-            url: "/basicService/contacts/updateContacts",
-            dataType: "json",
-            data: "id=1&name=ztt",
-            type: "post",
-            success: function (data, textStatus, jqXHR) {
-                alert("success");
-                // alert(data[0].name);
-            }
-        });
-    }
-</script>
-<input type="button" value="test" onclick="test()">
-
+<div class="easyui-layout" style="width: auto;height: 600px">
+    <div data-options="region:'north'" style="height:50px">
+        <h2>手机报系统</h2>
+    </div>
+    <div data-options="region:'east',split:true" title="说明" style="width:180px;">
+    </div>
+    <div data-options="region:'west',split:true" title="功能区" style="width:150px;">
+        <ul id="tree" class="easyui-tree" data-options="url:'json/tree.json',method:'get',animate:true"></ul>
+    </div>
+    <div data-options="region:'center',title:'主页面'">
+        <div id="main" class="easyui-tabs" data-options="fit:true,border:false,plain:true">
+        </div>
+    </div>
+</div>
 </body>
 </html>

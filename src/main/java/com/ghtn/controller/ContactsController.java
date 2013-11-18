@@ -23,6 +23,11 @@ public class ContactsController {
 
     private static Log log = LogFactory.getLog(ContactsController.class);
 
+    @RequestMapping("/open")
+    public String open() {
+        return "contacts";
+    }
+
     @RequestMapping("/saveContacts")
     @ResponseBody
     public ResultMessage saveContacts(String name, String idCard) {
@@ -75,6 +80,8 @@ public class ContactsController {
         }
     }
 
+    @RequestMapping("/batchImportContacts")
+    @ResponseBody
     public ResultMessage batchImportContacts(String fileName) {
         Map<String, String> params = new HashMap<>();
         params.put("fileName", fileName);

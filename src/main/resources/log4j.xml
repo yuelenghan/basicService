@@ -14,7 +14,7 @@
     </logger>
 
     <logger name="com.ghtn">
-        <level value="DEBUG"/>
+        <level value="debug"/>
     </logger>
 
     <logger name="org.springframework.web.context.ContextLoader">

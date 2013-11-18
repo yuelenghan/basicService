@@ -1,0 +1,88 @@
+[
+    {
+        "id": 1,
+        "text": "手机报",
+        "state": "open",
+        "iconCls": "icon-book",
+        "children": [
+            {
+                "id": 11,
+                "text": "制作手机报",
+                "iconCls": "icon-page",
+                "attributes": {
+                    "url": "test.jsp"
+                }
+            },
+            {
+                "id": 12,
+                "text": "发件箱",
+                "iconCls": "icon-page",
+                "attributes": {
+                    "url": "test2.jsp"
+                }
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "text": "素材库",
+        "state": "closed",
+        "children": [
+            {
+                "id": 21,
+                "text": "我的素材",
+                "state": "open",
+                "attributes": {
+                    "url": "wodesucai"
+                }
+            },
+            {
+                "id": 22,
+                "text": "制作文本素材",
+                "state": "open",
+                "attributes": {
+                    "url": "zhizuowenbensucai"
+                }
+            },
+            {
+                "id": 23,
+                "text": "制作图片素材",
+                "state": "open",
+                "attributes": {
+                    "url": "制作图片素材"
+                }
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "text": "系统管理",
+        "state": "closed",
+        "children": [
+            {
+                "id": 31,
+                "text": "账户信息",
+                "state": "open",
+                "attributes": {
+                    "url": "账户信息"
+                }
+            },
+            {
+                "id": 32,
+                "text": "通讯录",
+                "state": "open",
+                "attributes": {
+                    "url": "contacts/open"
+                }
+            },
+            {
+                "id": 33,
+                "text": "我的标签",
+                "state": "open",
+                "attributes": {
+                    "url": "我的标签"
+                }
+            }
+        ]
+    }
+]
