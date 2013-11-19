@@ -46,12 +46,14 @@ function addTreeNode() {
 }
 
 function removeTreeNode() {
+    var node = $("#contactsTypeTree").tree("getSelected");
+    if (node.attributes.root.toUpperCase() == "Y") {
+        $.messager.alert("错误", "不能删除根节点！", "warning");
+        return;
+    }
     $.messager.confirm('确认删除', '确定删除此通讯录类别？', function (r) {
         if (r) {
-            var node = $("#contactsTypeTree").tree("getSelected");
             if (node) {
-                //alert(node.id);
-
                 // 调用服务器端的方法，删除数据库中的数据
                 $.ajax({
                     url: "contactsType/removeContactsType",
