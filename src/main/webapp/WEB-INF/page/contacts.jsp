@@ -25,17 +25,38 @@
             <ul id="contactsTypeTree" class="easyui-tree" data-options="
                             url:'contactsType/getContactsTypeTree'
                             ,method:'get',
-                            animate:true"></ul>
+                            animate:true,
+                            onAfterEdit: function(node) {
+                                afterEditTreeNode(node);
+                            }"></ul>
         </div>
 
     </div>
 
-    <div data-options="region:'center',border:false"></div>
+    <div data-options="region:'center',border:false">
+        <div id="contactsTypeDlg" class="easyui-dialog" title="增加通讯录类别"
+             data-options="width:400,left:500,top:200,closable:true,modal:true,closed:true">
+            <div style="padding:10px 0 10px 60px">
+                <table>
+                    <tr>
+                        <td>类别名称:</td>
+                        <td><input class="easyui-validatebox" type="text" id="contactsTypeName"
+                                   data-options="required:true"></td>
+                    </tr>
+                </table>
+            </div>
+            <div style="text-align:center;padding:5px">
+                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save'"
+                   onclick="addTreeNode()">保存</a>
+            </div>
+        </div>
+    </div>
 </div>
 <div id="contactsTypeTool">
-    <a href="javascript:void(0)" class="icon-add" onclick="addTreeNode()"></a>
+    <a href="javascript:void(0)" class="icon-add" onclick="openDlg()"></a>
     <a href="javascript:void(0)" class="icon-edit" onclick="editTreeNode()"></a>
     <a href="javascript:void(0)" class="icon-cancel" onclick="removeTreeNode()"></a>
 </div>
+
 </body>
 </html>

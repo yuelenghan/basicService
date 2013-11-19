@@ -27,10 +27,6 @@ public class ContactsTypeController {
     @ResponseBody
     public Object getContactsTypeTree() {
         try {
-            Map<String, Object> map = new HashMap<>();
-            map.put("id", 1);
-            map.put("text", "test");
-            map.put("state", "open");
             return HttpClientUtil.sendRequest(HttpClientUtil.getUrl("contactsType.getContactsTypeTree"),
                     null, "post");
         } catch (Exception e) {
@@ -44,9 +40,50 @@ public class ContactsTypeController {
     public ResultMessage removeContactsType(Long id) {
         Map<String, String> params = new HashMap<>();
         params.put("id", id + "");
-        log.debug("id ============= " + id);
+        //log.debug("id ============= " + id);
         try {
             String msg = HttpClientUtil.sendRequest(HttpClientUtil.getUrl("contactsType.removeContactsType"),
+                    params, "post");
+            if (!StringUtil.isNullStr(msg) && msg.trim().equals("success")) {
+                return new ResultMessage(1, msg);
+            } else {
+                return new ResultMessage(-1, msg);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultMessage(-1, e.toString());
+        }
+    }
+
+    @RequestMapping("/saveContactsType")
+    @ResponseBody
+    public ResultMessage saveContactsType(Long id, String name) {
+        Map<String, String> params = new HashMap<>();
+        params.put("id", id + "");
+        params.put("name", name);
+        log.debug("id ====" + id + " , name ====" + name);
+        try {
+            String msg = HttpClientUtil.sendRequest(HttpClientUtil.getUrl("contactsType.saveContactsType"),
+                    params, "post");
+            if (!StringUtil.isNullStr(msg) && msg.trim().equals("success")) {
+                return new ResultMessage(1, msg);
+            } else {
+                return new ResultMessage(-1, msg);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultMessage(-1, e.toString());
+        }
+    }
+
+    @RequestMapping("/addChild")
+    @ResponseBody
+    public ResultMessage addChild(Long id, String name) {
+        Map<String, String> params = new HashMap<>();
+        params.put("id", id + "");
+        params.put("name", name);
+        try {
+            String msg = HttpClientUtil.sendRequest(HttpClientUtil.getUrl("contactsType.addChild"),
                     params, "post");
             if (!StringUtil.isNullStr(msg) && msg.trim().equals("success")) {
                 return new ResultMessage(1, msg);
