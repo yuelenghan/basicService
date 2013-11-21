@@ -8,8 +8,10 @@ import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ClientConnectionManager;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
@@ -28,7 +30,9 @@ public class HttpClientUtil {
 
     private static Log log = LogFactory.getLog(HttpClientUtil.class);
 
-    private static HttpClient httpClient = new DefaultHttpClient();
+    // 使用线程安全的连接管理来创建httpClient
+    private static ClientConnectionManager conMgr = new ThreadSafeClientConnManager();
+    private static HttpClient httpClient = new DefaultHttpClient(conMgr);
 
     /**
      * 根据属性名得到请求的url

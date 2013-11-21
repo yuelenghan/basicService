@@ -68,12 +68,17 @@ public class ContactsController {
         }
     }
 
-    @RequestMapping("/listContacts")
+    @RequestMapping("/getContactsByPage")
     @ResponseBody
-    public Object listContacts() {
+    public Object getContactsByPage(Long contactsTypeId, Integer page, Integer rows) {
         try {
-            return HttpClientUtil.sendRequest(HttpClientUtil.getUrl("contacts.listContacts"),
-                    null, "post");
+            log.debug("page ======" + page + " , rows ======" + rows);
+            Map<String, String> params = new HashMap<>();
+            params.put("id", contactsTypeId + "");
+            params.put("page", page + "");
+            params.put("rows", rows + "");
+            return HttpClientUtil.sendRequest(HttpClientUtil.getUrl("contacts.getContactsByPage"),
+                    params, "post");
         } catch (Exception e) {
             e.printStackTrace();
             return new ResultMessage(-1, e.toString());
