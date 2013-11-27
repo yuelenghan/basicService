@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -141,6 +143,17 @@ public class ContactsController {
         } catch (Exception e) {
             e.printStackTrace();
             return new ResultMessage(-1, e.toString());
+        }
+    }
+
+    @RequestMapping("/downloadTemplate")
+    @ResponseBody
+    public ResultMessage downloadTemplate(String fileName, HttpServletResponse response) {
+        try {
+            return FileUtil.downloadFile(fileName, response);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return new ResultMessage(-1, "字符转码错误！");
         }
     }
 }

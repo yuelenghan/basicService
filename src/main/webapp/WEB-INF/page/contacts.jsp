@@ -59,11 +59,16 @@
         <div id="contactsPanel" class="easyui-panel" title="通讯录" style="padding:10px;"
              data-options="fit:true,border:false">
 
-            <input type="file" name="fileUpload" data-url="contacts/uploadFile" id="fileUpload"
-                   onchange="uploadFile()"/>
+            <div id="importPanel" class="easyui-panel" title="批量导入" style="padding:10px;">
+                <a href="contacts/downloadTemplate?fileName=通讯录模板.xls">下载导入模板</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="file" name="fileUpload" data-url="contacts/uploadFile" id="fileUpload"
+                       onchange="uploadFile()"/>
+                <img src="themes/default/images/loading.gif" style="display: none" id="loading">
+                <input type="button" value="导入" id="importBtn" style="display: none;" onclick="startImport()">
+            </div>
 
-            <img src="themes/default/images/loading.gif" style="display: none" id="loading">
-            <input type="button" value="导入" id="importBtn" style="display: none;" onclick="startImport()">
+
             <table id="contactsData">
                 <thead>
                 <tr>
@@ -80,7 +85,6 @@
                 $('#contactsData').datagrid({
                     title: '通讯录列表',
                     iconCls: 'icon-save',//图标
-                    fit: true,//自动大小
                     url: 'contacts/getContactsByPage?contactsTypeId=0',
                     rownumbers: true,//行号
                     pagination: true,

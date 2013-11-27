@@ -14,6 +14,7 @@ import java.util.Properties;
 public class ConstantUtil {
     public static String INDEX_BASE;
     public static String UPLOAD_TEMP_PATH;
+    public static String CONTACTS_TEMPLATE_PATH;
     public static final String SUCCESS = "success";
     public static final String ERROR = "error";
 
@@ -24,6 +25,7 @@ public class ConstantUtil {
             prop.load(in);
             INDEX_BASE = prop.getProperty("hibernate.search.default.indexBase").trim();
             UPLOAD_TEMP_PATH = prop.getProperty("upload.temp.path").trim();
+            CONTACTS_TEMPLATE_PATH = prop.getProperty("contacts.template.path").trim();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

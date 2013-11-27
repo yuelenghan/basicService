@@ -6,7 +6,7 @@
     <artifactId>basicService</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>newsPaper</name>
+    <name>basicService</name>
     <url>http://maven.apache.org</url>
 
     <prerequisites>
@@ -265,7 +265,11 @@
         <httpClient.version>4.1.2</httpClient.version>
         <poi.version>3.9</poi.version>
 
+        <!-- 上传的临时文件目录 -->
         <upload.temp.path>d:/temp</upload.temp.path>
+
+        <!-- 通讯录模板目录 -->
+        <contacts.template.path>${env.CATALINA_HOME}/webapps/${project.name}/resources</contacts.template.path>
 
         <encoding>utf-8</encoding>
     </properties>

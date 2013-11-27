@@ -1,5 +1,7 @@
 package com.ghtn.util;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.poi.POIXMLDocument;
 import org.apache.poi.POIXMLTextExtractor;
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -17,6 +19,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -29,6 +32,8 @@ import java.util.List;
  * 文件操作相关
  */
 public class FileUtil {
+
+    private static Log log = LogFactory.getLog(FileUtil.class);
 
     /**
      * 得到文件扩展名
@@ -452,5 +457,38 @@ public class FileUtil {
             return new ResultMessage(-1, "文件为空！");
         }
     }
+
+    /**
+     * 下载文件
+     *
+     * @param fileName 文件名
+     * @param response HttpServletResponse对象
+     * @return 下载结果
+     */
+    public static ResultMessage downloadFile(String fileName, HttpServletResponse response) throws UnsupportedEncodingException {
+        // log.debug(ConstantUtil.CONTACTS_TEMPLATE_PATH);
+        response.reset();
+        response.setContentType("application/octet-stream; charset=utf-8");
+        response.setHeader("Content-Disposition",
+                "attachment;fileName=" + new String(fileName.getBytes("gb2312"), "iso8859-1"));
+        File file = new File(ConstantUtil.UPLOAD_TEMP_PATH + "/" + fileName);
+
+        try (InputStream is = new FileInputStream(file);
+             OutputStream os = response.getOutputStream()) {
+            byte[] b = new byte[1024];
+            int length;
+            while ((length = is.read(b)) > 0) {
+                os.write(b, 0, length);
+            }
+            return new ResultMessage(1, ConstantUtil.SUCCESS);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return new ResultMessage(-1, "文件没有找到！");
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new ResultMessage(-1, "输入输出错误！");
+        }
+    }
+
 }
 
