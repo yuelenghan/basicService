@@ -10,6 +10,10 @@
     <script type="text/javascript" src="scripts/jquery.min.js"></script>
     <script type="text/javascript" src="scripts/jquery.easyui.min.js"></script>
 
+    <script src="scripts/jquery.ui.widget.js"></script>
+    <script src="scripts/jquery.iframe-transport.js"></script>
+    <script src="scripts/jquery.fileupload.js"></script>
+
     <script type="text/javascript" src="scripts/main.js"></script>
     <script type="text/javascript" src="scripts/contacts.js"></script>
 </head>

@@ -14,6 +14,8 @@ import java.util.Properties;
 public class ConstantUtil {
     public static String INDEX_BASE;
     public static String UPLOAD_TEMP_PATH;
+    public static final String SUCCESS = "success";
+    public static final String ERROR = "error";
 
     static {
         InputStream in = ConstantUtil.class.getResourceAsStream("/constant.properties");
