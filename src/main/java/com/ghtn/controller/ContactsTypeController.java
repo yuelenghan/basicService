@@ -19,80 +19,61 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/contactsType")
-public class ContactsTypeController {
+public class ContactsTypeController extends BaseController {
 
     private static Log log = LogFactory.getLog(ContactsTypeController.class);
 
     @RequestMapping("/getContactsTypeTree")
     @ResponseBody
-    public Object getContactsTypeTree() {
-        try {
-            return HttpClientUtil.sendRequest(HttpClientUtil.getUrl("contactsType.getContactsTypeTree"),
-                    null, "post");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResultMessage(-1, e.toString());
-        }
+    public Object getContactsTypeTree() throws Exception {
+        // TODO : 设置租户参数
+        return HttpClientUtil.sendRequest(HttpClientUtil.getUrl("contactsType.getContactsTypeTree"),
+                null, "post");
     }
 
     @RequestMapping("/removeContactsType")
     @ResponseBody
-    public ResultMessage removeContactsType(Long id) {
+    public ResultMessage removeContactsType(Long id) throws Exception {
         Map<String, String> params = new HashMap<>();
         params.put("id", id + "");
-        //log.debug("id ============= " + id);
-        try {
-            String msg = HttpClientUtil.sendRequest(HttpClientUtil.getUrl("contactsType.removeContactsType"),
-                    params, "post");
-            if (!StringUtil.isNullStr(msg) && msg.trim().equals("success")) {
-                return new ResultMessage(1, msg);
-            } else {
-                return new ResultMessage(-1, msg);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResultMessage(-1, e.toString());
+        log.debug("id ============= " + id);
+        String msg = HttpClientUtil.sendRequest(HttpClientUtil.getUrl("contactsType.removeContactsType"),
+                params, "post");
+        if (!StringUtil.isNullStr(msg) && msg.trim().equals("success")) {
+            return new ResultMessage(1, msg);
+        } else {
+            return new ResultMessage(-1, msg);
         }
     }
 
-    @RequestMapping("/saveContactsType")
+    @RequestMapping("/updateContactsType")
     @ResponseBody
-    public ResultMessage saveContactsType(Long id, String name) {
+    public ResultMessage updateContactsType(Long id, String name) throws Exception {
         Map<String, String> params = new HashMap<>();
         params.put("id", id + "");
         params.put("name", name);
         log.debug("id ====" + id + " , name ====" + name);
-        try {
-            String msg = HttpClientUtil.sendRequest(HttpClientUtil.getUrl("contactsType.saveContactsType"),
-                    params, "post");
-            if (!StringUtil.isNullStr(msg) && msg.trim().equals("success")) {
-                return new ResultMessage(1, msg);
-            } else {
-                return new ResultMessage(-1, msg);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResultMessage(-1, e.toString());
+        String msg = HttpClientUtil.sendRequest(HttpClientUtil.getUrl("contactsType.updateContactsType"),
+                params, "post");
+        if (!StringUtil.isNullStr(msg) && msg.trim().equals("success")) {
+            return new ResultMessage(1, msg);
+        } else {
+            return new ResultMessage(-1, msg);
         }
     }
 
     @RequestMapping("/addChild")
     @ResponseBody
-    public ResultMessage addChild(Long id, String name) {
+    public ResultMessage addChild(Long id, String name) throws Exception {
         Map<String, String> params = new HashMap<>();
         params.put("id", id + "");
         params.put("name", name);
-        try {
-            String msg = HttpClientUtil.sendRequest(HttpClientUtil.getUrl("contactsType.addChild"),
-                    params, "post");
-            if (!StringUtil.isNullStr(msg) && msg.trim().equals("success")) {
-                return new ResultMessage(1, msg);
-            } else {
-                return new ResultMessage(-1, msg);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResultMessage(-1, e.toString());
+        String msg = HttpClientUtil.sendRequest(HttpClientUtil.getUrl("contactsType.addChild"),
+                params, "post");
+        if (!StringUtil.isNullStr(msg) && msg.trim().equals("success")) {
+            return new ResultMessage(1, msg);
+        } else {
+            return new ResultMessage(-1, msg);
         }
     }
 }
