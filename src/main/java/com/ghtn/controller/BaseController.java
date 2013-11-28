@@ -21,7 +21,8 @@ public class BaseController {
     public ResultMessage handleException(Exception e) {
         log.error("------------发生异常！----------------");
         log.error("Caused by : " + e.getCause());
-        log.error("Message : " + e.getMessage());
+        log.error("Message : " + e.toString());
+        log.error("Exception : ", e);
         return new ResultMessage(-1, e.toString());
     }
 }

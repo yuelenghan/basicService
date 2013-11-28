@@ -471,6 +471,8 @@ public class FileUtil {
         response.setContentType("application/octet-stream; charset=utf-8");
         response.setHeader("Content-Disposition",
                 "attachment;fileName=" + new String(fileName.getBytes("gb2312"), "iso8859-1"));
+
+        // TODO : 发布到正式服务器需要修改文件路径
         File file = new File(ConstantUtil.UPLOAD_TEMP_PATH + "/" + fileName);
 
         try (InputStream is = new FileInputStream(file);

@@ -2,7 +2,6 @@ package com.ghtn.controller;
 
 import com.ghtn.util.HttpClientUtil;
 import com.ghtn.util.ResultMessage;
-import com.ghtn.util.StringUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
@@ -39,11 +38,7 @@ public class ContactsTypeController extends BaseController {
         log.debug("id ============= " + id);
         String msg = HttpClientUtil.sendRequest(HttpClientUtil.getUrl("contactsType.removeContactsType"),
                 params, "post");
-        if (!StringUtil.isNullStr(msg) && msg.trim().equals("success")) {
-            return new ResultMessage(1, msg);
-        } else {
-            return new ResultMessage(-1, msg);
-        }
+        return ResultMessage.checkMsg(msg);
     }
 
     @RequestMapping("/updateContactsType")
@@ -55,11 +50,7 @@ public class ContactsTypeController extends BaseController {
         log.debug("id ====" + id + " , name ====" + name);
         String msg = HttpClientUtil.sendRequest(HttpClientUtil.getUrl("contactsType.updateContactsType"),
                 params, "post");
-        if (!StringUtil.isNullStr(msg) && msg.trim().equals("success")) {
-            return new ResultMessage(1, msg);
-        } else {
-            return new ResultMessage(-1, msg);
-        }
+        return ResultMessage.checkMsg(msg);
     }
 
     @RequestMapping("/addChild")
@@ -70,10 +61,6 @@ public class ContactsTypeController extends BaseController {
         params.put("name", name);
         String msg = HttpClientUtil.sendRequest(HttpClientUtil.getUrl("contactsType.addChild"),
                 params, "post");
-        if (!StringUtil.isNullStr(msg) && msg.trim().equals("success")) {
-            return new ResultMessage(1, msg);
-        } else {
-            return new ResultMessage(-1, msg);
-        }
+        return ResultMessage.checkMsg(msg);
     }
 }

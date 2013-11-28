@@ -65,11 +65,7 @@ public class ContactsController extends BaseController {
 
         String msg = HttpClientUtil.sendRequest(HttpClientUtil.getUrl("contacts.updateContacts"),
                 params, "post");
-        if (!StringUtil.isNullStr(msg) && msg.trim().equals(ConstantUtil.SUCCESS)) {
-            return new ResultMessage(1, msg);
-        } else {
-            return new ResultMessage(-1, msg);
-        }
+        return ResultMessage.checkMsg(msg);
     }
 
     @RequestMapping("/removeContacts")
@@ -79,11 +75,7 @@ public class ContactsController extends BaseController {
         params.put("id", id + "");
         String msg = HttpClientUtil.sendRequest(HttpClientUtil.getUrl("contacts.removeContacts"),
                 params, "post");
-        if (!StringUtil.isNullStr(msg) && msg.trim().equals(ConstantUtil.SUCCESS)) {
-            return new ResultMessage(1, msg);
-        } else {
-            return new ResultMessage(-1, msg);
-        }
+        return ResultMessage.checkMsg(msg);
     }
 
     @RequestMapping("/getContactsByPage")
@@ -116,11 +108,7 @@ public class ContactsController extends BaseController {
         // TODO : 从session中取得租户信息，并设置租户id
         String msg = HttpClientUtil.sendRequest(HttpClientUtil.getUrl("contacts.batchImportContacts"),
                 params, "post");
-        if (!StringUtil.isNullStr(msg) && msg.trim().equals(ConstantUtil.SUCCESS)) {
-            return new ResultMessage(1, msg);
-        } else {
-            return new ResultMessage(-1, msg);
-        }
+        return ResultMessage.checkMsg(msg);
     }
 
     @RequestMapping("/downloadTemplate")

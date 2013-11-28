@@ -19,7 +19,7 @@
 
 function addTreeNode() {
     var node = $("#contactsTypeTree").tree("getSelected");
-    var name = $("#contactsTypeName").val();
+    var name = $("#contactsTypeName").val().trim();
     if (name == "") {
         $.messager.alert("错误", "请填写通讯录类别名称！", "warning");
         return;
@@ -87,7 +87,7 @@ function editTreeNode() {
 function afterEditTreeNode(node) {
     //alert(node.text);
     $.ajax({
-        url: "contactsType/saveContactsType",
+        url: "contactsType/updateContactsType",
         type: "post",
         data: "id=" + node.id + "&name=" + node.text,
         dataType: "json",
@@ -147,20 +147,20 @@ function addContacts() {
     //alert("add");
     var treeNode = $("#contactsTypeTree").tree("getSelected");
     var pid = treeNode.id;
-    var name = $("#contactsName").val();
-    var idCard = $("#contactsIdCard").val();
-    var phone = $("#contactsPhone").val();
-    var email = $("#contactsEmail").val();
+    var name = $("#contactsName").val().trim();
+    var idCard = $("#contactsIdCard").val().trim();
+    var phone = $("#contactsPhone").val().trim();
+    var email = $("#contactsEmail").val().trim();
     if (name == "") {
-        $.messager.alert("错误", "请填写姓名！", "warning");
+        $.messager.alert("错误", "请填写姓名！", "error");
         return;
     }
     if (idCard == "") {
-        $.messager.alert("错误", "请填写身份证号！", "warning");
+        $.messager.alert("错误", "请填写身份证号！", "error");
         return;
     }
     if (phone == "") {
-        $.messager.alert("错误", "请填写手机号！", "warning");
+        $.messager.alert("错误", "请填写手机号！", "error");
         return;
     }
     $("#contactsDlg").dialog("close");

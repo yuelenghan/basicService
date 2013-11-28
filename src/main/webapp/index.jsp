@@ -16,6 +16,7 @@
 
     <script type="text/javascript" src="scripts/main.js"></script>
     <script type="text/javascript" src="scripts/contacts.js"></script>
+    <script type="text/javascript" src="scripts/material.js"></script>
 </head>
 <body>
 <div class="easyui-layout" style="width: auto;height: 600px">

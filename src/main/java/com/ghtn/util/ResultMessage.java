@@ -63,6 +63,14 @@ public class ResultMessage {
     public void setResultSet(Set resultSet) {
         this.resultSet = resultSet;
     }
+
+    public static ResultMessage checkMsg(String msg) {
+        if (!StringUtil.isNullStr(msg) && msg.trim().equals(ConstantUtil.SUCCESS)) {
+            return new ResultMessage(1, msg);
+        } else {
+            return new ResultMessage(-1, msg);
+        }
+    }
 }
 
 

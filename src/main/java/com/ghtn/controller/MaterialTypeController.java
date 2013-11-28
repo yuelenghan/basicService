@@ -1,5 +1,6 @@
 package com.ghtn.controller;
 
+import com.ghtn.util.ConstantUtil;
 import com.ghtn.util.HttpClientUtil;
 import com.ghtn.util.ResultMessage;
 import com.ghtn.util.StringUtil;
@@ -32,9 +33,41 @@ public class MaterialTypeController extends BaseController {
     public ResultMessage addMaterialType(String name) throws Exception {
         Map<String, String> params = new HashMap<>();
         params.put("name", name);
-        String msg = HttpClientUtil.sendRequest(HttpClientUtil.getUrl("materialType.addChild"),
+        String msg = HttpClientUtil.sendRequest(HttpClientUtil.getUrl("materialType.addMaterialType"),
                 params, "post");
         if (!StringUtil.isNullStr(msg) && msg.trim().equals("success")) {
+            return new ResultMessage(1, msg);
+        } else {
+            return new ResultMessage(-1, msg);
+        }
+    }
+
+    @RequestMapping("/removeMaterialType")
+    @ResponseBody
+    public ResultMessage removeMaterialType(Long id) throws Exception {
+        Map<String, String> params = new HashMap<>();
+        params.put("id", id + "");
+        String msg = HttpClientUtil.sendRequest(HttpClientUtil.getUrl("materialType.removeMaterialType"),
+                params, "post");
+        if (!StringUtil.isNullStr(msg) && msg.trim().equals(ConstantUtil.SUCCESS)) {
+            return new ResultMessage(1, msg);
+        } else {
+            return new ResultMessage(-1, msg);
+        }
+    }
+
+    @RequestMapping("/updateMaterialType")
+    @ResponseBody
+    public ResultMessage updateMaterialType(Long id, String name)
+            throws Exception {
+        // TODO : 从session的到租户信息，设置到map中传递过去
+        Map<String, String> params = new HashMap<>();
+        params.put("id", id + "");
+        params.put("name", name);
+
+        String msg = HttpClientUtil.sendRequest(HttpClientUtil.getUrl("materialType.updateMaterialType"),
+                params, "post");
+        if (!StringUtil.isNullStr(msg) && msg.trim().equals(ConstantUtil.SUCCESS)) {
             return new ResultMessage(1, msg);
         } else {
             return new ResultMessage(-1, msg);

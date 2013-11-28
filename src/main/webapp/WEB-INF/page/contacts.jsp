@@ -10,14 +10,6 @@
 <head>
     <meta charset="UTF-8">
     <title>通讯录</title>
-    <link rel="stylesheet" type="text/css" href="/themes/default/easyui.css">
-    <link rel="stylesheet" type="text/css" href="/themes/icon.css">
-    <link rel="stylesheet" type="text/css" href="/css/demo.css">
-    <script type="text/javascript" src="/scripts/jquery.min.js"></script>
-    <script type="text/javascript" src="/scripts/jquery.easyui.min.js"></script>
-    <script src="/scripts/jquery.ui.widget.js"></script>
-    <script src="/scripts/jquery.iframe-transport.js"></script>
-    <script src="/scripts/jquery.fileupload.js"></script>
 </head>
 <body>
 <div class="easyui-layout" data-options="fit:true">
